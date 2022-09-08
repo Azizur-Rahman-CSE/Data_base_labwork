@@ -1,0 +1,57 @@
+CREATE TABLE department (
+    dept_name varchar(4),
+    building varchar(20),
+    budget numeric(20),
+    PRIMARY KEY(dept_name)
+)
+
+CREATE TABLE instructor (
+    instructorid char(5),
+    name varchar(20) not null,
+    department_name varchar(20),
+    salary numeric(8,2),
+    PRIMARY KEY (instructor_id),
+    FOREIGN KEY (department_name) REFERENCES department(dept_name)
+)
+
+alter table department add total_student int(4)
+alter table department drop total_student int(4)
+
+
+CREATE TABLE loan (
+    loan_number varchar(20),
+    branch_name varchar(20),
+    amount numeric(4,2),
+    PRIMARY KEY(loan_number)
+)
+
+alter table loan modify amount numeric(6, 2)
+
+
+
+CREATE TABLE borrower (
+    customer_name varchar(20),
+    loan_number varchar(10),
+    PRIMARY KEY(loan_number)
+)
+
+insert into loan(loan_number,branch_name,amount)
+VALUES('L-170', 'Downtown', 3000.00),
+VALUES('L-230', 'Redwood', 4000.00),
+VALUES('L-260', 'Perryridge', 17000.00),
+VALUES('L-266', 'Perryridge', 17000.00)
+
+
+insert into borrower
+VALUES('Jones', 'L-170'), ('Smith','L-230'), ('Hayes','L-155')
+
+delete from loan
+where loan_number = 'L-266'
+
+update loan 
+set branch_name = 'Gopalganj',
+	amount = 30000
+where loan_number = 'L-170'
+
+
+//azizulcsebsmrstu@gmail.com
