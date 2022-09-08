@@ -28,7 +28,6 @@ CREATE TABLE loan (
 alter table loan modify amount numeric(6, 2)
 
 
-
 CREATE TABLE borrower (
     customer_name varchar(20),
     loan_number varchar(10),
@@ -54,4 +53,12 @@ set branch_name = 'Gopalganj',
 where loan_number = 'L-170'
 
 
+select loan_number, branch_name, amount
+from loan
+where branch_name = 'Gopalganj'
+
+
+select customer_name
+from loan, borrower
+where branch_name='Gopalganj' AND loan.loan_number = borrower.loan_number
 //azizulcsebsmrstu@gmail.com
