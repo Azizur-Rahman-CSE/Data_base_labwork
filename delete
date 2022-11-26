@@ -1,0 +1,26 @@
+<?php
+session_start();
+?>
+<?php
+$con =mysqli_connect('localhost','root','','flower');
+if(isset($_POST['delete']))
+{
+  $id=$_POST['delete_id'];
+  $t_picture=$_POST['delete_t_picture'];
+
+ $sql="DELETE  FROM flower_table WHERE id='$id' ";
+  $result=mysqli_query($con,$sql);
+  if($result)
+    {
+      unlink("Images/".$f_picture);
+      $_SESSION['status']="Data Deleted Successfully";
+      header('location:index.php');
+    }
+    else 
+    {
+      $_SESSION['status']="Data Not Deleted....!";
+      header('location:index.php');
+    }
+}
+?>
+
